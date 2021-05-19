@@ -55,7 +55,6 @@ function AppAppBar(props) {
             href="/"
           >
             <img src={Logo} alt="Logo travel4spanish" className={classes.logo}/>
-            {/* {'travel4spanish'} */}
           </Link>
           <div className={classes.right}>
             <Link

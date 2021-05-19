@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -30,11 +30,12 @@ const styles = (theme) => ({
   },
   textField: {
     width: '100%',
-    marginTop: theme.spacing(3),
-    marginBottom: theme.spacing(2),
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1),
   },
   button: {
     width: '100%',
+    marginTop: theme.spacing(1),
   },
   imagesWrapper: {
     position: 'relative',
@@ -54,14 +55,17 @@ const styles = (theme) => ({
     left: 38,
     right: 0,
     bottom: 0,
-    width: '130%',
+    width: '120%',
     maxWidth: 900,
   },
 });
 
 function ProductCTA(props) {
-  const { classes } = props;
-  const [open, setOpen] = React.useState(false);
+  const { classes, status, message, onValidated } = props;
+  const [open, setOpen] = useState(false);
+  const [email, setEmail] = useState('');
+  const [firstName, setFirstName] = useState('');
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -95,7 +99,8 @@ function ProductCTA(props) {
               <Typography variant="h5">
                 Become a member of Travel4Spanish community.
               </Typography>
-              <TextField noBorder className={classes.textField} placeholder="Your email" />
+              <TextField noBorder value={firstName} name="firstName" onChange={setFirstName} className={classes.textField} placeholder="Your name" />
+              <TextField noBorder value={email} name="email" onChange={setEmail} className={classes.textField} placeholder="Your email" />
               <Button type="submit" color="primary" variant="contained" className={classes.button}>
                 Keep me updated
               </Button>
@@ -106,7 +111,7 @@ function ProductCTA(props) {
       <Snackbar
         open={open}
         onClose={handleClose}
-        message="We will send you our best offers, once a week."
+        message="We will send you material for study, once a week."
       />
     </Container>
   );
